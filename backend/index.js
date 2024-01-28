@@ -15,17 +15,8 @@ app.use(cors());
 
 app.post('/signin' , async function(req , res) {
     const userCredential = req.body;
-    const parseduserCredential = Login_Register.safeParse(userCredential);
-    if(!parseduserCredential.success){
-        res.status(411).json({
-            msg : 'something wrong with input',
-        });
-        return;
-    }
-
     const user = await User.findOne({
-        name : userCredential.name,
-        lastname : userCredential.lastname,
+        username : userCredential.username,
         password : userCredential.password,
     }).then(() => {
         if(user){
@@ -52,8 +43,9 @@ app.post('/signup' , async function(req , res) {
         return;
     }
     const user = await User.create({
-            name : userCredential.name,
-            lastname : userCredential.lastname,
+            username : userCredential.username,
+            firstName : userCredential.firstname,
+            lastName : userCredential.lastname,
             password : userCredential.password,
         }).then((res) => {
             if(user && res.status == 200){
