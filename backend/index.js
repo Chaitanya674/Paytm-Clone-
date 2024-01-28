@@ -1,7 +1,6 @@
 require('dotenv').config()
 const express = require("express");
 const mongoose = require('mongoose');
-const zod = require('zod');
 const PORT = 3000;
 const app = express();
 
@@ -10,7 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 app.post('/signin' , async function(req , res) {
-
+    
 })
 
 app.post('/signup' , async function(req , res) {
