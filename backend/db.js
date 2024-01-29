@@ -1,6 +1,9 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 
-const User_Schema = mongoose.Schema({
+mongoose.connect(process.env.MONGO_URI);
+
+const userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
@@ -27,10 +30,11 @@ const User_Schema = mongoose.Schema({
         trim: true,
         maxLength: 50
     }
-})
+});
 
-const User = mongoose.model('users' , User_Schema);
+// Create a model from the schema
+const User = mongoose.model('User', userSchema);
 
 module.exports = {
-    User
-}
+	User
+};
