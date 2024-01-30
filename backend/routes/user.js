@@ -37,6 +37,13 @@ router.post('/singup' , async(req , res) => {
     const token = jwt.sign({
         userId : dbuser._id,
     }, JWT_SECRET);
+
+    const userId = dbuser._id 
+    await Account.create({
+        userId,
+        balance: 1 + Math.random() * 10000
+    })
+
     req.json({
         msg : "user created successfully",
         token : token,
